@@ -13,9 +13,9 @@
  0% {transform: translateY(0) rotate(0deg);}
  100% {transform: translateY(110vh) rotate(360deg);}
 }
-body {margin: 0; height: 100vh; display: flex; align-items: center; justify-content: center;
+body {margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-      font-family: 'Arial Black', sans-serif; color: white; text-align: center; overflow: hidden;}
+      font-family: 'Arial Black', sans-serif; color: white; text-align: center; overflow-y: auto;}
 .glass {background: rgba(255,255,255,0.1); backdrop-filter: blur(20px); 
         padding: 40px 20px; border-radius: 30px; border: 2px solid rgba(255,255,255,0.2);}
 h1 {font-size: 40px; margin-bottom: 20px; text-shadow: 0 0 20px #ff69b4;}
@@ -36,19 +36,23 @@ p {margin-top: 25px; font-size: 20px;}
 <div class="confetti" style="left: 65%; animation-delay: 1.5s;">✨</div>
 <div class="confetti" style="left: 80%; animation-delay: 2.5s;">🎊</div>
 <div class="confetti" style="left: 95%; animation-delay: 1s;">🎀</div>
+</div> <!-- this closes glass -->
 
+<button id="playBtn" style="position: fixed; bottom: 30px; right: 30px; 
+  padding: 15px 25px; font-size: 18px; border: none; border-radius: 50px; 
+  background: #ff69b4; color: white; cursor: pointer; box-shadow: 0 5px 20px rgba(0,0,0,0.3); 
+  z-index: 9999;">
+  🔊 Tap for Music
+</button>
+
+</body>
 <div class="glass">
   <!-- AUDIO MUST COME BEFORE THE BUTTON SCRIPT -->
   <audio id="bdaySong" loop preload="auto">
     <source src="song.mp3" type="audio/mpeg">
   </audio>
   
-  <button id="playBtn" style="position: fixed; bottom: 30px; right: 30px; 
-  padding: 15px 25px; font-size: 18px; border: none; border-radius: 50px; 
-  background: #ff69b4; color: white; cursor: pointer; box-shadow: 0 5px 20px rgba(0,0,0,0.3); 
-  z-index: 100;">
-    🔊 Tap for Music
-  </button>
+
   
   <!-- PASTE NEW CODE HERE ↓↓ -->
   <h5 style="margin: 0 0 10px 0; font-size: 18px; opacity: 0.8; text-align: center; color: tomato;">Birthday Wishes from PETER to</h5>
