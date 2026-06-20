@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ATUWHERA'S BIG DAY</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<style>
+.confetti {
+  position: fixed; top: -50px; font-size: 35px; 
+  animation: fall 6s linear infinite; z-index: -1;
+}
+@keyframes fall {
+ 0% {transform: translateY(0) rotate(0deg);}
+ 100% {transform: translateY(110vh) rotate(360deg);}
+}
+body {margin: 0; height: 100vh; display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+      font-family: 'Arial Black', sans-serif; color: white; text-align: center; overflow: hidden;}
+.glass {background: rgba(255,255,255,0.1); backdrop-filter: blur(20px); 
+        padding: 40px 20px; border-radius: 30px; border: 2px solid rgba(255,255,255,0.2);}
+h1 {font-size: 40px; margin-bottom: 20px; text-shadow: 0 0 20px #ff69b4;}
+.timer {display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;}
+.box {background: rgba(0,0,0,0.3); padding: 20px; border-radius: 20px; min-width: 90px;}
+.number {font-size: 55px; display: block; animation: pulse 1s infinite;}
+.label {font-size: 16px; opacity: 0.8;}
+@keyframes pulse {0%,100% {transform: scale(1);} 50% {transform: scale(1.05);}}
+p {margin-top: 25px; font-size: 20px;}
+</style>
+</head>
+<body>
+
+<div class="confetti" style="left: 5%;">🎂</div>
+<div class="confetti" style="left: 20%; animation-delay: 1s;">🎉</div>
+<div class="confetti" style="left: 35%; animation-delay: 2s;">🎁</div>
+<div class="confetti" style="left: 50%; animation-delay: 0.5s;">🎈</div>
+<div class="confetti" style="left: 65%; animation-delay: 1.5s;">✨</div>
+<div class="confetti" style="left: 80%; animation-delay: 2.5s;">🎊</div>
+<div class="confetti" style="left: 95%; animation-delay: 1s;">🎀</div>
+
+<div class="glass">
+  <!-- AUDIO MUST COME BEFORE THE BUTTON SCRIPT -->
+  <audio id="bdaySong" loop preload="auto">
+    <source src="song.mp3" type="audio/mpeg">
+  </audio>
+  
+  <button id="playBtn" style="position: fixed; bottom: 30px; right: 30px; 
+  padding: 15px 25px; font-size: 18px; border: none; border-radius: 50px; 
+  background: #ff69b4; color: white; cursor: pointer; box-shadow: 0 5px 20px rgba(0,0,0,0.3); 
+  z-index: 100;">
+    🔊 Tap for Music
+  </button>
+  
+  <!-- PASTE NEW CODE HERE ↓↓ -->
+  <h5 style="margin: 0 0 10px 0; font-size: 18px; opacity: 0.8; text-align: center; color: tomato;">Birthday Wishes from PETER to</h5>
+  <h1 style="text-align: center;"> 🎉 ATUWHERA SHANIAH 🎉</h1>
+  
+  <!-- TIMER - 3 BOXES FORCED IN 1 ROW -->
+  <div class="timer" style="display: flex; gap: 10px; justify-content: center; flex-wrap: nowrap;">
+    <div class="box" style="background: rgba(0,0,0,0.3); padding: 15px 5px; border-radius: 20px; min-width: 75px; flex: 1;">
+      <span class="number" id="days">0</span><span class="label">DAYS</span>
+    </div>
+    <div class="box" style="background: rgba(0,0,0,0.3); padding: 15px 5px; border-radius: 20px; min-width: 75px; flex: 1;">
+      <span class="number" id="hours">0</span><span class="label">HOURS</span>
+    </div>
+    <div class="box" style="background: rgba(0,0,0,0.3); padding: 15px 5px; border-radius: 20px; min-width: 75px; flex: 1;">
+      <span class="number" id="mins">0</span><span class="label">MINUTES</span>
+    </div>
+  </div>
+  
+  <!-- WISHES TEXT - LOCKED CONTAINER + TYPEWRITER -->
+  <div id="wishText" style="max-width: 480px; margin: 25px auto 0; padding: 0 15px; 
+              font-size: 18px; line-height: 1.6; text-align: center; min-height: 100px;">
+  </div>
+  
+  <p style="margin-top: 15px; text-align: center;">Wish you a Nice a Happy Birthday in Advance 🎉🎉 Enjoy your day 🤗🤗</p>
+  <!-- PASTE NEW CODE END ↑↑ -->
+  <p>🌟 Countdown ends = surprise begins. Stay tuned my OG`</p>
+</div>
+<script>
+  const song = document.getElementById('bdaySong');
+  const btn = document.getElementById('playBtn');
+  
+  btn.onclick = function() {
+    song.play().then(() => {
+      btn.style.display = 'none';
+    }).catch(err => {
+      alert('Music error: ' + err.message); // This will tell us if file missing
+    });
+  }
+  
+  window.addEventListener('load', () => {
+    song.play().catch(() => {
+      btn.style.display = 'block';
+    });
+  });
+</script>
+
+<script>
+// HER REAL BD: June 24, 2026 at 10:00 AM
+const birthDate = new Date(2026, 5, 24, 10, 0, 0);
+
+function updateTimer() {
+    const now = new Date().getTime();
+    const distance = birthDate - now;
+    
+    if (distance < 0) {
+        window.location.href = "shania.html";
+        return;
+    }
+    
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    
+    document.getElementById("days").innerHTML = days;
+    document.getElementById("hours").innerHTML = hours;
+    document.getElementById("mins").innerHTML = mins;
+}
+updateTimer();
+setInterval(updateTimer, 60000);
+</script>
+<script>
+// Typewriter effect for the wishes
+const text = "Remember when we used to fight over one pencil in class? Now I'm fighting time just to wish you first 😂 Happy Birthday Shaniah! From same village dust to same 'wow you've grown' energy.";
+let i = 0;
+function typeWriter() {
+  if (i < text.length) {
+    document.getElementById("wishText").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeWriter, 50);
+  }
+}
+window.addEventListener('load', typeWriter);
+</script>
+</body>
+</html>
